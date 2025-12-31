@@ -1,5 +1,4 @@
 import numpy as np
-from typing import Optional
 
 """
  Generates an undirected Erdős–Rényi random graph adjacency matrix.
@@ -19,38 +18,15 @@ from typing import Optional
  
   @param n the number of vertices in the graph
   @param expectedDegree the target expected degree per vertex
-  @param seed an optional seed for a custom number generator
+  @param seed an optional seed for a custom number generator, used for testing
   @param useDefaultRng if true it uses the Numpy random generator
   @return an n × n symmetric adjacency matrix
   @throws ValueError if parameters are invalid
 
 
 """
-def generate_adjacency_matrix(
-    n: int,
-    expectedDegree: float,
-    seed: Optional[int] = None,
-    useDefaultRng: bool = False
-) -> np.ndarray:
+def generate_adjacency_matrix(n, expectedDegree, rng):
     p = expectedDegree / n
 
-    if n <= 0:
-        raise ValueError("Number of vertices must be positive")
-
-    if expectedDegree < 0:
-        raise ValueError("Expected degree must be non-negative")
-
-    if p > 1:
-        raise ValueError("Invalid parameters: p > 1")
-
-    # Choose the source of random
-    if useDefaultRng:
-        rng = np.random.default_rng()
-    else:
-        rng = np.random.default_rng(seed)
-
-
-    upper_triangle = np.triu(random_matrix = rng.random((n, n)) < p, k=1)
-
-    adjacency_matrix = upper_triangle + upper_triangle.T
-    return adjacency_matrix.astype(int)
+    upper_triangle = np.triu(rng.random((n, n)) < p, k=1)
+    return (upper_triangle + upper_triangle.T).astype(int)

@@ -1,14 +1,8 @@
 import numpy as np
-from typing import Dict
 from GraphGenerator import generate_adjacency_matrix
 
 
-def monte_carlo_simulation(
-    n: int,
-    expectedDegree: float,
-    runs: int,
-    rng: np.random.Generator
-) -> Dict[str, float]:
+def monte_carlo_simulation(n, expectedDegree, rng, runs):
     """
     Performs a Monte Carlo simulation for Erdős–Rényi random graphs.
 
@@ -32,30 +26,16 @@ def monte_carlo_simulation(
     @raises ValueError: If parameters are invalid.
 
     """
-    if n <= 0:
-        raise ValueError("Number of vertices must be positive")
-
-    if expectedDegree < 0:
-        raise ValueError("Expected degree must be non-negative")
-
-    if runs <= 0:
-        raise ValueError("Number of runs must be positive")
 
     mean_degrees = []
 
     for _ in range(runs):
-        adjacency_matrix = generate_adjacency_matrix(
-            n=n,
-            expectedDegree=expectedDegree,  # keep name consistent with your generator if needed
-            rng=rng
-        )
-
-        degree_sequence = adjacency_matrix.sum(axis=1)
-        mean_degrees.append(degree_sequence.mean())
+        A = generate_adjacency_matrix(n, expectedDegree, rng)
+        mean_degrees.append(A.sum(axis=1).mean())
 
     return {
-        "expected_degree": float(expectedDegree),
-        "empirical_mean_degree": float(np.mean(mean_degrees)),
-        "empirical_std_degree": float(np.std(mean_degrees)),
-        "runs": float(runs)
+        "expected_degree": expectedDegree,
+        "empirical_mean_degree": np.mean(mean_degrees),
+        "empirical_std_degree": np.std(mean_degrees),
+        "runs": runs
     }
