@@ -26,7 +26,7 @@ import numpy as np
 
 
 """
-def generate_adjacency_matrix(n, expected_degree, rng):
+def generate_adjacency_list(n, expected_degree, rng):
     p = expected_degree / n
     adj_list = [[] for _ in range(n)]
 
