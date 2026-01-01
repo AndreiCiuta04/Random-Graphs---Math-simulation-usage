@@ -48,6 +48,12 @@ def main():
         graph,
         f"Degree-ordered visualization (n={n_vis}, c={c_vis})")
 
+    c_vis = 0.67
+    graph = generate_adjacency_list(n_vis, c_vis, rng)
+    plot_graph_degree_order(
+        graph,
+        f"Degree-ordered visualization (n={n_vis}, c={c_vis})")
+
     c_vis = 0.9
     graph = generate_adjacency_list(n_vis, c_vis, rng)
     plot_graph_degree_order(
