@@ -5,7 +5,7 @@ This repository contains a written paper and the Python simulation that numerica
 Project developed in the scope of the seminar paper for  Maß- und Wahrscheinlichkeitstheorie (en. measure and probability theory).
 
 ## Repository Structure
-- `paper/` – the academic paper (PDF and LaTeX)
+- `paper/` – the academic paper (PDF)
 - `simulation/` – Python code used for our simulation
 
 ## Simulation
