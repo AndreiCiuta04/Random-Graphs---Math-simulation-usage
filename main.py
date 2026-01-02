@@ -16,7 +16,7 @@ def main():
     """
     # Monte Carlo parameters (paper)
     n = 10000
-    runs = 1
+    runs = 50
     seed = 676767
     c_values = np.linspace(0.0, 2.0, 20)
 
